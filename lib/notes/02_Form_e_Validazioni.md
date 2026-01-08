@@ -1,6 +1,6 @@
-02 – Form e validazione (Shopping List)
+### 02 – Form e validazione (Shopping List)
 
-1. Schermata di input: NewItem
+### 1. Schermata di input: NewItem
 File: widgets/new_item.dart
 
 È uno StatefulWidget perché:
@@ -19,7 +19,7 @@ _enteredQuantity → numero inserito nel campo quantità
 
 _selectedCategory → categoria scelta nel dropdown
 
-2. Struttura del Form
+### 2. Struttura del Form
 
 Il Form avvolge tutti i campi di input:
 
@@ -35,14 +35,14 @@ Form(
   ),
 )
 
-Perché usare Form?
+### Perché usare Form?
 Permette di validare tutti i campi insieme (validate())
 
 Permette di salvare tutti i campi insieme (save())
 
 Permette di resettare tutti i campi (reset())
 
-3. GlobalKey<FormState>
+### 3. GlobalKey<FormState>
 
 final _formKey = GlobalKey<FormState>();
 Serve per accedere allo stato del Form da fuori
@@ -55,9 +55,9 @@ save() → salva tutti i valori
 
 reset() → ripristina i valori iniziali
 
-4. Campi di input
+### 4. Campi di input
 
-Campo nome (TextFormField)
+### Campo nome (TextFormField)
 
 TextFormField(
   maxLength: 50,
@@ -65,11 +65,12 @@ TextFormField(
   validator: (value) { ... },
   onSaved: (value) { _enteredName = value!; },
 )
+
 validator → controlla che il testo sia tra 1 e 50 caratteri
 
 onSaved → salva il valore nella variabile _enteredName
 
-Campo quantità (TextFormField)
+### Campo quantità (TextFormField)
 
 TextFormField(
   decoration: InputDecoration(label: Text('Quantity')),
@@ -82,7 +83,8 @@ validator → controlla che sia un numero positivo
 
 onSaved → converte il valore in intero e lo salva
 
-Dropdown categoria (DropdownButtonFormField)
+### Dropdown categoria (DropdownButtonFormField)
+
 DropdownButtonFormField(
   value: _selectedCategory,
   items: [...],
@@ -92,11 +94,12 @@ DropdownButtonFormField(
     });
   },
 )
+
 Mostra tutte le categorie disponibili
 
 Aggiorna _selectedCategory quando l’utente seleziona una nuova voce
 
-5. Pulsanti finali
+### 5. Pulsanti finali
 
 TextButton(
   onPressed: () {
@@ -113,7 +116,7 @@ Reset → ripristina i valori iniziali
 
 Add Item → chiama _saveItem() per validare e salvare
 
-6. Metodo _saveItem()
+### 6. Metodo _saveItem()
 
 void _saveItem() {
   if (_formKey.currentState!.validate()) {
@@ -129,7 +132,7 @@ void _saveItem() {
   }
 }
 
-Flusso completo:
+### Flusso completo:
 
 validate() → controlla tutti i campi
 
@@ -139,7 +142,7 @@ Crea un oggetto GroceryItem
 
 Ritorna l’oggetto alla schermata precedente con Navigator.pop
 
-7. Pattern riutilizzabile per altri form
+### 7. Pattern riutilizzabile per altri form
 
 Crea una GlobalKey<FormState>
 
@@ -154,7 +157,7 @@ if (_formKey.currentState!.validate()) {
   // usa i dati salvati
 }
 
-8. In parole povere
+### 8. In parole povere
 
 Il Form è il contenitore intelligente che coordina tutti i campi.
 La GlobalKey è il telecomando per validare, salvare e resettare.
